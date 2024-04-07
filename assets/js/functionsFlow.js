@@ -375,11 +375,6 @@ function iniciarContador(tempoInicial) {
     }
 }
 
-
-window.onload = function() {
-    iniciarContador("10:00"); // Inicia o contador assim que a página é carregada
-};
-
 const chartImage = document.querySelector('.chart');
     const statsDiv = document.querySelector('.stats');
 

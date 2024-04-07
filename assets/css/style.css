@@ -114,10 +114,11 @@ p { font-size: 16px; line-height: 25.6px; }
 
 .main .wrapper .container .components div ul { list-style: none; padding: 0; margin: 0; height: 130px; }
 .main .wrapper .container .components div ul.scroll { overflow-y: scroll; height: 150px; }
-.main .wrapper .container .components div ul.customScroll { height: 73%; overflow-y: scroll;}
+.main .wrapper .container .components div ul.customScroll { max-height: 210px; height:210px; overflow-y: scroll; }
+.main .wrapper .container .components div ul.customScrollRotinas { max-height: 350px; height:350px; overflow-y: scroll; }
 .main .wrapper .container .components div ul li { color: #E3E3E3; line-height: 43px; position: relative; }
 .main .wrapper .container .components div ul li.empty { color: #606060; }
-.main .wrapper .container .components div ul li img { cursor: pointer; position: absolute; width: 15px; right: 0px; top: 14px; opacity: 0.2; transition: all 0.3s; }
+.main .wrapper .container .components div ul li img { cursor: pointer; position: absolute; width: 15px; right: 10px; top: 14px; opacity: 0.2; transition: all 0.3s; }
 .main .wrapper .container .components div ul li img:hover { opacity: 1; }
 .main .wrapper .container .components div ul li small { font-size: 15px; color: #B5B5B5; }
 .main .wrapper .container .components div ul li small.default { color: #E3E3E3; }
@@ -346,6 +347,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .mid div ul li small:last-child { margin-right: 20px; }
 
 .main .wrapper .container .mid div#listaTarefas { width: 100% !important; padding: 0 !important; }
+.main .wrapper .container .mid div#listaTarefas.customScroll { height: 60%; overflow-y: scroll; }
 .main .wrapper .container .mid div#listaTarefas p { color: #606060;}
 .main .wrapper .container .mid div#listaTarefas div.form-check { padding: 10px 24px; background: transparent; width: 100%; border: none; position: relative; }
 .main .wrapper .container .mid div#listaTarefas div.form-check img { cursor:pointer; position: absolute; width: 15px; right: 15px; top: 14px; opacity: 0.2; transition: all 0.3s; }

@@ -429,6 +429,7 @@ let objetivos = [];
 
 document.getElementById('adicionarObjetivo').addEventListener('click', adicionarObjetivo);
 carregarObjetivos();
+
 function salvarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
@@ -442,7 +443,8 @@ function carregarTarefas() {
 }
 
 function adicionarTarefa() {
-    const descricao = document.getElementById('descricaoTarefasInput').value;
+    const descricaoInput = document.getElementById('descricaoTarefasInput');
+    const descricao = descricaoInput.value;
 
     if (descricao.trim() !== '') {
         const listaTarefas = document.getElementById('listaTarefas');
@@ -460,11 +462,15 @@ function adicionarTarefa() {
         novaLabel.className = 'form-check-label';
         novaLabel.setAttribute('contentEditable', true); // Permite edição de conteúdo
         novaLabel.textContent = descricao;
-        novaLabel.addEventListener('blur', function() {
-            // Atualiza a descrição da tarefa quando a edição termina
-            const descricaoAntiga = descricao;
+
+        // Adicionando evento de input para atualizar a descrição em tempo real
+        novaLabel.addEventListener('input', function() {
             const novaDescricao = this.textContent.trim();
-            atualizarDescricaoTarefa(descricaoAntiga, novaDescricao);
+            const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricao);
+            if (indexTarefa !== -1) {
+                tarefas[indexTarefa].descricao = novaDescricao;
+                salvarTarefas(); // Salva as alterações no localStorage
+            }
         });
 
         const spanRemove = document.createElement('span');
@@ -473,9 +479,13 @@ function adicionarTarefa() {
         iconeRemover.src = '../assets/images/icons/icRemoveWhite.svg'; // Aqui você coloca o caminho relativo da sua imagem de remover
         iconeRemover.alt = 'Remover';
         spanRemove.appendChild(iconeRemover);
+
+        // Adicionando evento de clique ao ícone de remoção
         spanRemove.addEventListener('click', function() {
+            // Obtém a descrição da tarefa a partir do elemento pai
+            const descricaoTarefa = this.parentNode.querySelector('.form-check-label').textContent;
             this.parentNode.remove(); // Remove o item quando o span é clicado
-            removerTarefa(descricao);
+            removerTarefa(descricaoTarefa); // Chama a função para remover a tarefa correta
         });
 
         const divFormCheck = document.createElement('div');
@@ -493,30 +503,36 @@ function adicionarTarefa() {
         };
         tarefas.push(novaTarefa);
         salvarTarefas();
-        
+
+        descricaoInput.value = ''; // Limpa o campo de entrada de descrição
         $('#addTarefaFlow').modal('hide');
     }
 }
+
+
 
 function atualizarDescricaoTarefa(descricaoAntiga, novaDescricao) {
     const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricaoAntiga);
     if (indexTarefa !== -1) {
         tarefas[indexTarefa].descricao = novaDescricao;
-        salvarTarefas();
+        salvarTarefas(); // Salva as alterações no localStorage
     }
 }
 
 
 function removerTarefa(descricao) {
-    tarefas = tarefas.filter(tarefa => tarefa.descricao !== descricao);
-    salvarTarefas();
+    const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricao);
+    if (indexTarefa !== -1) {
+        tarefas.splice(indexTarefa, 1); // Removendo apenas a tarefa encontrada
+        salvarTarefas();
 
-    const listaTarefas = document.getElementById('listaTarefas');
-    if (tarefas.length === 0) {
-        const mensagemNenhumaTarefa = document.createElement('p');
-        mensagemNenhumaTarefa.textContent = 'Nenhuma tarefa adicionada ainda.';
-        listaTarefas.innerHTML = ''; // Limpa a lista de tarefas
-        listaTarefas.appendChild(mensagemNenhumaTarefa); // Adiciona a mensagem
+        const listaTarefas = document.getElementById('listaTarefas');
+        if (tarefas.length === 0) {
+            const mensagemNenhumaTarefa = document.createElement('p');
+            mensagemNenhumaTarefa.textContent = 'Nenhuma tarefa adicionada ainda.';
+            listaTarefas.innerHTML = ''; // Limpa a lista de tarefas
+            listaTarefas.appendChild(mensagemNenhumaTarefa); // Adiciona a mensagem
+        }
     }
 }
 
@@ -528,7 +544,7 @@ function carregarTarefas() {
     const tarefasString = localStorage.getItem('tarefas');
     if (tarefasString) {
         tarefas = JSON.parse(tarefasString);
-        atualizarListaTarefas();
+        atualizarListaTarefas(); // Atualizar a interface após carregar as tarefas
     }
 }
 

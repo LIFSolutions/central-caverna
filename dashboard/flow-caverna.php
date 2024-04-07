@@ -145,31 +145,6 @@
     <script src="../assets/js/functionsFlow.js"></script>
     <script src="../assets/js/uploadPhotos.js"></script>
     <script>
-    var listaRotinas = document.getElementById("listaRotinas");
-
-    function verificarAlturaDaLista() {
-        var alturaLista = listaRotinas.scrollHeight;
-        var alturaPai = listaRotinas.parentElement.clientHeight;
-        var porcentagem = (alturaLista / alturaPai) * 100;
-
-        if (porcentagem >= 70) {
-            listaRotinas.classList.add("customScroll");
-        } else {
-            listaRotinas.classList.remove("customScroll");
-        }
-    }
-
-    verificarAlturaDaLista();
-
-    var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            verificarAlturaDaLista();
-        });
-    });
-
-    var config = { childList: true };
-
-    observer.observe(listaRotinas, config);
         function resetVideoContainers(except = null) {
             document.querySelectorAll('.video-container').forEach(container => {
                 if (container !== except) {
@@ -205,6 +180,51 @@
                 });
             });
         });
+
+        window.onload = function() {
+    var listaTarefas = document.getElementById('listaTarefas');
+    var listaRotinas = document.getElementById('listaRotinas');
+
+    // Função para verificar e adicionar a classe customScroll quando a altura passar de 210px
+    function verificarAltura() {
+        if (listaTarefas.scrollHeight > 210) {
+            listaTarefas.classList.add('customScroll');
+        } else {
+            listaTarefas.classList.remove('customScroll');
+        }
+
+        if (listaRotinas.scrollHeight > 350) {
+            listaRotinas.classList.add('customScrollRotinas');
+        } else {
+            listaRotinas.classList.remove('customScrollRotinas');
+        }
+    }
+
+    // Observador de adição de novos elementos à lista de tarefas
+    var observer = new MutationObserver(function(mutationsList, observer) {
+        for(var mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                verificarAltura();
+            }
+        }
+    });
+
+    observer.observe(listaTarefas, { childList: true });
+
+    // Observador de adição de novos elementos à lista de rotinas
+    var observerRotinas = new MutationObserver(function(mutationsList, observerRotinas) {
+        for(var mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                verificarAltura();
+            }
+        }
+    });
+
+    observerRotinas.observe(listaRotinas, { childList: true });
+
+    // Verificar altura na inicialização
+    verificarAltura();
+};
     </script>
 </body>
 </html>
