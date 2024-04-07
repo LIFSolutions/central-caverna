@@ -116,12 +116,13 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .components div ul.scroll { overflow-y: scroll; height: 150px; }
 .main .wrapper .container .components div ul.customScroll { max-height: 210px; height:210px; overflow-y: scroll; }
 .main .wrapper .container .components div ul.customScrollRotinas { max-height: 350px; height:350px; overflow-y: scroll; }
-.main .wrapper .container .components div ul li { color: #E3E3E3; line-height: 43px; position: relative; }
+.main .wrapper .container .components div ul.customScrollCompromissos { max-height: 120px; height:120px; overflow-y: scroll; }
+.main .wrapper .container .components div ul li { color: #606060; line-height: 43px; position: relative; }
 .main .wrapper .container .components div ul li.empty { color: #606060; }
 .main .wrapper .container .components div ul li img { cursor: pointer; position: absolute; width: 15px; right: 10px; top: 14px; opacity: 0.2; transition: all 0.3s; }
 .main .wrapper .container .components div ul li img:hover { opacity: 1; }
-.main .wrapper .container .components div ul li small { font-size: 15px; color: #B5B5B5; }
-.main .wrapper .container .components div ul li small.default { color: #E3E3E3; }
+.main .wrapper .container .components div ul li small { font-size: 15px; color: #B5B5B5; font-weight: 600; }
+.main .wrapper .container .components div ul li small.default { color: #E3E3E3; margin-left: 20px; font-weight: 400;}
 .main .wrapper .container .components div ul li small:last-child { margin-right: 20px; }
 
 .main .wrapper .container .components div .add { border-top: 1px solid #252525; width: 100%; border-radius: 0; margin-top: 10px; padding: 0; padding-top: 15px; }
@@ -270,7 +271,7 @@ p { font-size: 16px; line-height: 25.6px; }
 
 /* FLOW */
 .main .wrapper .container .flow { margin-top: 130px; margin-bottom: 50px; }
-.main .wrapper .container .flow span { display: block; color: #fff; font-size: 20px;}
+.main .wrapper .container .flow span { display: block; color: #fff; font-size: 16px;}
 .main .wrapper .container .flow .top { display: flex; gap: 30px; width: 100%; }
 .main .wrapper .container .flow .top div:nth-child(1) { width: 33%; }
 .main .wrapper .container .flow .top div:nth-child(1) .title { display: flex; gap: 20px; align-items: center; padding: 0; width: 100%; margin: 10px 0px 25px 0px; background: #121212; border-radius: 15px; padding: 25px 30px; margin-top: 30px; }
@@ -281,7 +282,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .flow .top div:nth-child(1) .links { cursor:pointer; position: relative; }
 .main .wrapper .container .flow .top div:nth-child(1) .links .span { cursor:pointer; }
 .main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens { width: 100%; margin-top: -30px; background: #292929; position: absolute; z-index: 1;}
-.main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens ul { margin: 0; padding: 0; list-style: none; }
+.main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens ul { margin: 0; padding: 0; list-style: none; max-height: 250px; height: 250px; overflow-y: scroll;}
 .main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens ul li { color: #fff; line-height: 38px; transition: all 0.3s; }
 .main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens ul li span { font-size: 14px !important; color:rgba(255,255,255,0.5) !important; display:block; margin-top: -5px; margin-bottom: 0; }
 .main .wrapper .container .flow .top div:nth-child(1) .links .dropdownItens ul li img { width: 25px; position: relative; margin: initial; display: inline-block; margin-right: 10px; }

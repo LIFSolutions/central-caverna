@@ -2,7 +2,6 @@
     <div class="title">
         <img src="../assets/images/icons/icCalendar.svg" data-tilt>
         <span>Compromissos</span>
-        <small><a href="../dashboard/compromissos.php">Ver tudo</a></small>
     </div>
     <ul id="listaCompromissos">
         <li class="empty">Nenhum compromisso adicionado</li>

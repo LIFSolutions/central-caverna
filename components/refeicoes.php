@@ -2,7 +2,6 @@
     <div class="title">
         <img src="../assets/images/icons/icRefeicao.svg" data-tilt>
         <span>Refeições</span>
-        <small><a href="../dashboard/treino-alimentacao.php">Ver tudo</a></small>
     </div>
     <ul id="listaRefeicoes">
         <li class="empty">Nenhuma refeição adicionada</li>

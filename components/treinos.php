@@ -2,7 +2,6 @@
     <div class="title">
         <img src="../assets/images/icons/icTreinos.svg" data-tilt>
         <span>Treinos</span>
-        <small><a href="../dashboard/treino-alimentacao.php">Ver tudo</a></small>
     </div>
     <ul id="listaTreinos">
         <li class="empty">Nenhum treino adicionado</li>

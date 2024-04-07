@@ -184,6 +184,7 @@
         window.onload = function() {
     var listaTarefas = document.getElementById('listaTarefas');
     var listaRotinas = document.getElementById('listaRotinas');
+    var listaCompromissos = document.getElementById('listaCompromissos');
 
     // Função para verificar e adicionar a classe customScroll quando a altura passar de 210px
     function verificarAltura() {
@@ -197,6 +198,17 @@
             listaRotinas.classList.add('customScrollRotinas');
         } else {
             listaRotinas.classList.remove('customScrollRotinas');
+        }
+
+        if (listaCompromissos.scrollHeight > 150) {
+            listaCompromissos.classList.add('customScrollCompromissos');
+        } else {
+            listaCompromissos.classList.remove('customScrollCompromissos');
+        }
+        
+        // Verificar se há itens na lista de compromissos e remover a classe se estiver vazia
+        if (listaCompromissos.children.length === 0) {
+            listaCompromissos.classList.remove('customScrollCompromissos');
         }
     }
 
@@ -222,9 +234,23 @@
 
     observerRotinas.observe(listaRotinas, { childList: true });
 
+    // Observador de adição de novos elementos à lista de compromissos
+    var observerCompromissos = new MutationObserver(function(mutationsList, observerCompromissos) {
+        for(var mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                verificarAltura();
+            }
+        }
+    });
+
+    observerCompromissos.observe(listaCompromissos, { childList: true });
+
     // Verificar altura na inicialização
     verificarAltura();
 };
+
+
+
     </script>
 </body>
 </html>

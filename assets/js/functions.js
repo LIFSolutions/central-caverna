@@ -21,16 +21,31 @@ function verificarScroll() {
 }
 
 function adicionarItem() {
-    const novoItem = document.getElementById('novoItemInput').value;
+    const novoItemInput = document.getElementById('novoItemInput');
+    let novoItem = novoItemInput.value;
+
+    // Capitalize a primeira letra do novo item
+    novoItem = novoItem.charAt(0).toUpperCase() + novoItem.slice(1);
+
     if (novoItem.trim() !== '') {
         itens.push(novoItem);
         naoEsquecer();
         atualizarLista();
         verificarScroll(); 
-        document.getElementById('novoItemInput').value = '';
+        novoItemInput.value = '';
         $('#addNaoEsquecer').modal('hide');
     }
 }
+
+document.getElementById('novoItemInput').addEventListener('input', function() {
+    let novoItem = this.value;
+
+    // Capitalize a primeira letra do novo item
+    novoItem = novoItem.charAt(0).toUpperCase() + novoItem.slice(1);
+
+    // Atualiza o valor do campo de entrada com a primeira letra maiúscula
+    this.value = novoItem;
+});
 
 function atualizarLista() {
     const listaItens = document.getElementById('listaItens');
@@ -128,7 +143,10 @@ function carregarRotinas() {
 function adicionarRotina() {
     const comeca = document.getElementById('comecaRotinaInput').value;
     const termina = document.getElementById('terminaRotinaInput').value;
-    const descricao = document.getElementById('descricaoRotinaInput').value;
+    let descricao = document.getElementById('descricaoRotinaInput').value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novaRotina = {
@@ -139,9 +157,20 @@ function adicionarRotina() {
         rotinas.push(novaRotina);
         salvarRotinas();
         atualizarListaRotinas();
-        $('#addRotina').modal('hide'); 
+        $('#addRotina').modal('hide');
     }
 }
+
+// Adiciona um evento de entrada ao campo de descrição para capitalizar a primeira letra em tempo real
+document.getElementById('descricaoRotinaInput').addEventListener('input', function() {
+    let descricao = this.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+    // Atualiza o valor do campo de descrição com a primeira letra maiúscula
+    this.value = descricao;
+});
 
 function atualizarListaRotinas() {
     const listaRotinas = document.getElementById('listaRotinas');
@@ -189,7 +218,10 @@ function carregarCompromissos() {
 function adicionarCompromisso() {
     const comeca = document.getElementById('comecaCompromissoInput').value;
     const termina = document.getElementById('terminaCompromissoInput').value;
-    const descricao = document.getElementById('descricaoCompromissoInput').value;
+    let descricao = document.getElementById('descricaoCompromissoInput').value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novoCompromisso = {
@@ -200,9 +232,19 @@ function adicionarCompromisso() {
         compromissos.push(novoCompromisso);
         salvarCompromissos();
         atualizarListaCompromissos();
-        $('#addCompromisso').modal('hide'); 
+        $('#addCompromisso').modal('hide');
     }
 }
+
+document.getElementById('descricaoCompromissoInput').addEventListener('input', function() {
+    let descricao = this.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+    // Atualiza o valor do campo de descrição com a primeira letra maiúscula
+    this.value = descricao;
+});
 
 function atualizarListaCompromissos() {
     const listaCompromissos = document.getElementById('listaCompromissos');
@@ -299,7 +341,11 @@ function carregarObjetivos() {
 }
 
 function adicionarObjetivo() {
-    const descricao = document.getElementById('descricaoObjetivoInput').value;
+    const descricaoInput = document.getElementById('descricaoObjetivoInput');
+    let descricao = descricaoInput.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
     if (descricao.trim() !== '') {
         const listaObjetivos = document.getElementById('listaObjetivos');
@@ -354,6 +400,16 @@ function adicionarObjetivo() {
         $('#addObjetivo').modal('hide');
     }
 }
+
+document.getElementById('descricaoObjetivoInput').addEventListener('input', function() {
+    let descricao = this.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+    // Atualiza o valor do campo de descrição com a primeira letra maiúscula
+    this.value = descricao;
+});
 
 function atualizarDescricaoObjetivo(descricaoAntiga, novaDescricao) {
     const indexObjetivo = objetivos.findIndex(objetivo => objetivo.descricao === descricaoAntiga);
@@ -444,7 +500,10 @@ function carregarTarefas() {
 
 function adicionarTarefa() {
     const descricaoInput = document.getElementById('descricaoTarefasInput');
-    const descricao = descricaoInput.value;
+    let descricao = descricaoInput.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
     if (descricao.trim() !== '') {
         const listaTarefas = document.getElementById('listaTarefas');
@@ -466,9 +525,18 @@ function adicionarTarefa() {
         // Adicionando evento de input para atualizar a descrição em tempo real
         novaLabel.addEventListener('input', function() {
             const novaDescricao = this.textContent.trim();
-            const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricao);
+            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); // Encontra o índice da tarefa
             if (indexTarefa !== -1) {
                 tarefas[indexTarefa].descricao = novaDescricao;
+                salvarTarefas(); // Salva as alterações no localStorage
+            }
+        });
+
+        // Adicionando evento de mudança de estado para o checkbox
+        novoCheckbox.addEventListener('change', function() {
+            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); // Encontra o índice da tarefa
+            if (indexTarefa !== -1) {
+                tarefas[indexTarefa].concluida = this.checked; // Atualiza o estado concluído da tarefa
                 salvarTarefas(); // Salva as alterações no localStorage
             }
         });
@@ -508,6 +576,18 @@ function adicionarTarefa() {
         $('#addTarefaFlow').modal('hide');
     }
 }
+
+document.getElementById('descricaoTarefasInput').addEventListener('input', function() {
+    let descricao = this.value;
+
+    // Capitalize a primeira letra da descrição
+    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+    // Atualiza o valor do campo de descrição com a primeira letra maiúscula
+    this.value = descricao;
+});
+
+
 
 
 
