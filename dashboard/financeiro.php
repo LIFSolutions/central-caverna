@@ -13,6 +13,20 @@
     <!-- GLOBAL CSS -->
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        /* Ajustes tabelas */
+        .finanHead .li > :first-child{
+            margin-right: auto;
+        }
+
+        .previsaoEntrada{
+            justify-content: space-between;
+        }
+
+        .previsaoEntrada > div {
+            width: 100% !important;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
@@ -34,13 +48,25 @@
                         
                         <div class="financeiro mb-5">
                             <div class="finanHead">
-                                <div>
+                                <div style="flex-grow: 1;">
                                     <h6>Caixa Atual</h6>
-                                    <ul>
-                                        <li>Itaú <span>R$ 1.250,00</span></li>
-                                        <li>Nubank <span>R$ 1.250,00</span></li>
-                                        <li>Caixa <span>R$ 1.250,00</span></li>
-                                        <li>Total <span>R$ 3.750,00</span></li>
+                                    <ul style="overflow-y: auto;max-height:100%;">
+                                        <li>
+                                            <span>Itaú</span>
+                                            <span contenteditable="">R$ 1.250,00</span>
+                                        </li>
+                                        <li>
+                                            <span>Nubank</span>
+                                            <span contenteditable="">R$ 1.250,00</span>
+                                        </li>
+                                        <li>
+                                            <span>Caixa</span>
+                                            <span contenteditable="">R$ 1.250,00</span>
+                                        </li>
+                                        <li>
+                                            <span>Total</span>
+                                            <span>R$ 3.750,00</span>
+                                        </li>
                                     </ul>
                                     <div class="add">
                                         <div class="info" data-bs-toggle="modal" data-bs-target="#addBanco">
@@ -50,6 +76,12 @@
                                     </div>
                                 </div>
 
+                                <div style="flex-grow: 3;">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                
+
+                                <!--
                                 <div>
                                     <h6 class="mb-3">Resumo do mês atual</h6>
                                     <div class="block">
@@ -85,6 +117,7 @@
                                         <p>R$ -700,00</p>
                                     </div>
                                 </div>
+                                -->
                             </div>
                             <!-- // -->
                             <span>Controle Geral de Custos</span>
@@ -102,25 +135,25 @@
                                         <tbody>
                                             <tr>
                                                 <td>Aluguel</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Internet</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>20</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Plano de Saúde</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Secretária</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
@@ -145,25 +178,25 @@
                                         <tbody>
                                             <tr>
                                                 <td>Energia</td>
-                                                <td>R$ 100,00</td>
+                                                <td contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Água</td>
-                                                <td>R$ 100,00</td>
+                                                <td contenteditable="">R$ 100,00</td>
                                                 <td>20</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Mercado</td>
-                                                <td>R$ 100,00</td>
+                                                <td contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Combustível</td>
-                                                <td>R$ 100,00</td>
+                                                <td contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
@@ -176,7 +209,7 @@
                                 </div>
 
                                 <div>
-                                    <h6>Cartão de Crédito  <span class="add-custo">Adicionar</span></h6>
+                                    <h6>Outros Custos <span class="add-custo">Adicionar</span></h6>
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -187,14 +220,14 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Itáu</td>
-                                                <td>R$ 100,00</td>
+                                                <td>Cartão Itáu</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
                                             
                                             <tr>
-                                                <td>Nubank</td>
-                                                <td>R$ 100,00</td>
+                                                <td>Viagem</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
 
@@ -227,19 +260,19 @@
                                         <tbody>
                                             <tr>
                                                 <td>Aluguel</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Salário</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>20</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Dividendos</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
@@ -264,19 +297,19 @@
                                         <tbody>
                                             <tr>
                                                 <td>Pro Labore</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>9</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Sálario</td>
-                                                <td>R$ 100,00</td>
+                                                <td contenteditable="">R$ 100,00</span></td>
                                                 <td>20</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Projetos</td>
-                                                <td>R$ 100,00</td>
+                                                <td  contenteditable="">R$ 100,00</td>
                                                 <td>15</td>
                                             </tr>
 
@@ -288,12 +321,12 @@
                                     </table>
                                 </div>
                             </div>
-                             <!-- // -->
+                             <!--
                              <div class="totalCustos">
                                 <h6>Previsão de entradas</h6>
                                 <p class="positive">R$ 600,00</p>
                             </div>
-                            <!-- // -->
+                             -->
                         </div>
                     </div>
                 </div>
@@ -308,10 +341,51 @@
     <?php include_once '../modals/addBanco.php'; ?>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        var ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+            datasets: [{
+                label: 'Resumo',
+                data: [300, 350, 1000, 200, 450, 500],
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+    </script>
+    <script>
+
+        $('.inputValores').each(function() {
+            IMask(this, {
+                mask: 'R$ num',
+                blocks: {
+                num: {
+                    mask: Number,
+                    scale: 2,
+                    thousandsSeparator: '.',
+                    radix: ',',
+                    mapToRadix: [',']
+                }
+                }
+            });
+        });
+
         $('#btn-add-banco').on('click',function(){
             var nomeBanco = $('#nomeBanco').val();
             var valorBanco = $('#valorBanco').val();
+            valorBanco = valorBanco.replace('R$ ','');
 
             valorBanco = parseFloat(valorBanco.replace('.', '').replace(',', '.')); // Convert to number
             valorBanco = valorBanco.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
@@ -325,10 +399,8 @@
                 total += value;
             });
 
-            // Format total value to display as "1.000,00"
             var formattedTotal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
-            // Assign the total value to the last li
             $('.finanHead ul li:last span').text('R$ ' + formattedTotal);
 
             $('#addBanco').modal('hide');
@@ -337,7 +409,7 @@
         });
 
         $('.add-custo').on('click',function(){
-            var novaLinha = '<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>';
+            var novaLinha = '<tr><td contenteditable="true"></td><td>R$ <span contenteditable></span></td><td contenteditable="true"></td></tr>';
             var table = $(this).closest('h6').next('.table');
             table.find('tbody').prepend(novaLinha);
 
