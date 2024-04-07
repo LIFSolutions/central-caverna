@@ -9,9 +9,22 @@
             <div class="modal-body">
                 <div class="compromisso">
                     <div>
-                        <input type="text" class="form-control" id="nomeBanco" placeholder="Nome do Banco" required>
+                        <select id="nomeBanco" class="form-select">
+                            <option value="Itaú">Itaú</option>
+                            <option value="Bradesco">Bradesco</option>
+                            <option value="BTG">BTG Pactual</option>
+                            <option value="Santander">Santander</option>
+                            <option value="Itaúsa">Itaúsa</option>
+                            <option value="BB">Banco do Brasil</option>
+                            <option value="Caixa">Caixa Econômica Federal</option>
+                            <option value="Pan">Banco Pan</option>
+                            <option value="Banrisul">Banrisul</option>
+                            <option value="ABC">Banco ABC</option>
+                        </select>
+                    </div>
+                    <br>
                     <div>
-                        <input class="form-control" id="valorBanco" placeholder="Valor" required>
+                        <input class="form-control inputValores" id="valorBanco" placeholder="Valor" value="R$ " required>
                     </div>
 
                     <button id="btn-add-banco">Adicionar</button>
