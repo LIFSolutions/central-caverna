@@ -1,0 +1,6 @@
+/* COMPONENT LOGIN */
+.login .loginBox .form-control { margin-bottom: 15px; padding: 12px 20px; border: 1px solid transparent; }
+.login .loginBox .form-control:focus { box-shadow: none; border: 1px solid transparent; }
+
+.login .loginBox .btn-primary { background: #D11F1F; width: 100%; font-size: 18px; padding: 10px; border: 1px solid transparent; transition: all 0.3s; }
+.login .loginBox .btn-primary:hover { background: #ec3737; }
