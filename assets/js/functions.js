@@ -154,6 +154,11 @@ function adicionarRotina() {
     // Capitalize a primeira letra da descrição
     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
+    // Limita a descrição a 91 caracteres
+    if (descricao.length > 81) {
+        descricao = descricao.slice(0, 81);
+    }
+
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novaRotina = {
             comeca: comeca,
@@ -180,6 +185,7 @@ function adicionarRotina() {
         $('#addRotina').modal('hide');
     }
 }
+
 
 
 // Adiciona um evento de entrada ao campo de descrição para capitalizar a primeira letra em tempo real
@@ -247,8 +253,13 @@ function adicionarCompromisso() {
     const termina = document.getElementById('terminaCompromissoInput').value;
     let descricao = document.getElementById('descricaoCompromissoInput').value;
 
-    // Capitalize a primeira letra da descrição
-    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+     // Capitalize a primeira letra da descrição
+     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+     // Limita a descrição a 91 caracteres
+     if (descricao.length > 81) {
+         descricao = descricao.slice(0, 81);
+     }
 
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novoCompromisso = {

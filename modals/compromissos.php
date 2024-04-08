@@ -10,7 +10,7 @@
                     <input id="comecaCompromissoInput" type="text" class="form-control time" placeholder="Começa">
                     <input id="terminaCompromissoInput" type="text" class="form-control time" placeholder="Termina">
                 </div>
-                <input id="descricaoCompromissoInput" type="text" class="form-control" placeholder="Descrição">
+                <input id="descricaoCompromissoInput" type="text" class="form-control" placeholder="Descrição" maxlength="81">
                 <button id="adicionarCompromisso" class="btn btn-primary">Adicionar</button>
             </div>
         </div>
