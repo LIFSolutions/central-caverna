@@ -31,7 +31,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="check5" data-src>
-                        <label class="form-check-label" for="check5">Verificar Agenda do Dia <small>Compromissos/Objetivo/Tarefas</small></label>
+                        <label class="form-check-label" for="check5">Verificar Agenda do Dia <small>Compromissos/Objetivos</small></label>
                     </div>
 
                     <div class="form-check">

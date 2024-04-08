@@ -31,7 +31,7 @@ $(document).ready(function() {
         $('#flowStatus').text('Ativo');
     } else {
         $('#switch-flat').prop('checked', false);
-        $('.removeMessage').html('<p>O Flow Caverna está desativado.</p>').removeClass('activated');
+        $('.removeMessage').html('<p>Faça o Ritual de ativação do Flow Caverna para a liberação das funcionalidades</p>').removeClass('activated');
         $('.hidden').removeClass('hidden').addClass('filter');
         $('#flowStatus').text('Desativado');
     }
