@@ -102,17 +102,20 @@
 
                 <div class="iframe" id="mindufless" style="display:none;">
                     <div class="video-container" data-video-id="8EeBDuQCV0A" data-thumbnail="../assets/images/flow/i4.jpg">
-                        <img src="../assets/images/flow/I4.jpg">
+                        <img src="../assets/images/defaultThumb.png">
                     </div>
                 </div>
 
                 <div class="iframe" id="rito" style="display:none;">
-                    <div class="video-container" data-video-id="Nunkt35xBPM" data-thumbnail="../assets/images/flow/i4.jpg">
-                        <img src="../assets/images/flow/I4.jpg">
+                    <div class="video-container" data-video-id="Nunkt35xBPM" data-thumbnail="../assets/images/defaultThumb.png">
+                        <img src="../assets/images/defaultThumb.png">
                     </div>
                 </div>
 
                 <div class="iframe" id="configPomodoroCheck" style="display:none;">
+                    <div class="close confirmPomodoro">
+                        <img src="../assets/images/icons/icCloseBtn.svg">
+                    </div>
                     <p>Informe suas metas diárias abaixo</p>
                     <small>(Opcional) Você pode alterar depois</small>
                     <label>Sessões Pomodoro</label>

@@ -901,8 +901,12 @@ footer p { color: #fff; }
 .modal .modal-body .iframe ul li { font-size: 16px; line-height: 30px; opacity: 0.7; }
 .modal .modal-body .iframe ul li small { display: block; font-size: 12px; margin-top: -10px; color: rgba(0, 0, 0, 0.5); }
 .modal .modal-body .iframe small { color: rgba(0,0,0,0.4); }
+.modal .modal-body .iframe .close { cursor:pointer; background: #d1201f; width: 40px; height: 40px; padding: 13px; position: absolute; right: -20px; top: -20px; border-radius: 20px; transition: all 0.3s; }
+.modal .modal-body .iframe .close:hover { background: #9c1818; }
+.modal .modal-body .iframe .close img { width: 100%; margin: 0 auto; display: block; }
 .modal .modal-body .iframe .video-container { width: 100%; position: relative; }
-.modal .modal-body .iframe .video-container img { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; }
+.modal .modal-body .iframe .video-container img { width: 100%; height: 380px; object-fit: cover; border-radius: 12px; cursor:pointer; transition: all 0.3s; }
+.modal .modal-body .iframe .video-container img:hover { opacity: 0.6;}
 .modal .modal-body .iframe .video-container .iframe-container { position: relative; width: 100% !important; height: 380px !important;}
 .modal .modal-body .iframe .video-container .iframe-container iframe { width: 100% !important; height: 380px !important;}
 
