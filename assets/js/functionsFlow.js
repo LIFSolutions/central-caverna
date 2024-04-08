@@ -451,3 +451,59 @@ const chartImage = document.querySelector('.chart');
 
     // Mostrar o iframe do configPomodoro quando o checkbox correspondente for marcado
     mostrarIframe("check9", "configPomodoroCheck", 0);
+
+    document.getElementById("check6").addEventListener("change", function() {
+        // Verifica se o checkbox está marcado
+        if (this.checked) {
+            // Fecha todos os iframes abertos
+            ocultarTodosIframes();
+        }
+    });
+
+    function fecharIframeAtual() {
+        var iframes = document.querySelectorAll(".iframe");
+        iframes.forEach(function(iframe) {
+            iframe.style.display = "none";
+            var player = new YT.Player(iframe.querySelector("iframe").id);
+            player.stopVideo(); // Parar o vídeo
+        });
+    }
+    
+    // Adicionar evento de escuta para cada checkbox de vídeo
+    document.getElementById("check7").addEventListener("change", function() {
+        // Verifica se o checkbox foi marcado
+        if (this.checked) {
+            // Fecha o iframe atual antes de iniciar o novo
+            fecharIframeAtual();
+            // Exibe o iframe do vídeo mindufless
+            document.getElementById("mindufless").style.display = "block";
+            var player = new YT.Player("mindufless");
+            player.playVideo(); // Inicia o vídeo
+        } else {
+            // Se o checkbox for desmarcado, fecha o iframe atual
+            fecharIframeAtual();
+        }
+    });
+    
+    document.getElementById("check8").addEventListener("change", function() {
+        // Verifica se o checkbox foi marcado
+        if (this.checked) {
+            // Fecha o iframe atual antes de iniciar o novo
+            fecharIframeAtual();
+            // Exibe o iframe do vídeo rito
+            document.getElementById("rito").style.display = "block";
+            var player = new YT.Player("rito");
+            player.playVideo(); // Inicia o vídeo
+        } else {
+            // Se o checkbox for desmarcado, fecha o iframe atual
+            fecharIframeAtual();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um evento de clique ao botão confirmPomodoro
+        document.querySelector('.confirmPomodoro').addEventListener('click', function() {
+            // Fecha o iframe configPomodoroCheck
+            document.getElementById('configPomodoroCheck').style.display = 'none';
+        });
+    });

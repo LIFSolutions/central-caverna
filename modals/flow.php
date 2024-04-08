@@ -101,11 +101,15 @@
                 </div>
 
                 <div class="iframe" id="mindufless" style="display:none;">
-                    <iframe src="https://www.youtube.com/embed/8EeBDuQCV0A?si=NpHGiaiKf2Jgnbip" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="video-container" data-video-id="8EeBDuQCV0A" data-thumbnail="../assets/images/flow/i4.jpg">
+                        <img src="../assets/images/flow/I4.jpg">
+                    </div>
                 </div>
 
                 <div class="iframe" id="rito" style="display:none;">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/Nunkt35xBPM?controls=0&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-container" data-video-id="Nunkt35xBPM" data-thumbnail="../assets/images/flow/i4.jpg">
+                        <img src="../assets/images/flow/I4.jpg">
+                    </div>
                 </div>
 
                 <div class="iframe" id="configPomodoroCheck" style="display:none;">
@@ -119,7 +123,7 @@
 
                     <label>Flow Estudos</label>
                     <input type="text" class="form-control">
-                    <button>Salvar</button>
+                    <button class="confirmPomodoro">Salvar</button>
                 </div>
             </div>
         </div>
