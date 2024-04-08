@@ -160,12 +160,27 @@ function adicionarRotina() {
             termina: termina,
             descricao: descricao
         };
-        rotinas.push(novaRotina);
+
+        // Encontra o índice onde a nova rotina deve ser inserida
+        let indiceInsercao = 0;
+        for (let i = 0; i < rotinas.length; i++) {
+            if (comeca < rotinas[i].comeca || (comeca === rotinas[i].comeca && termina < rotinas[i].termina)) {
+                indiceInsercao = i;
+                break;
+            } else {
+                indiceInsercao = i + 1;
+            }
+        }
+
+        // Insere a nova rotina no índice calculado
+        rotinas.splice(indiceInsercao, 0, novaRotina);
+
         salvarRotinas();
         atualizarListaRotinas();
         $('#addRotina').modal('hide');
     }
 }
+
 
 // Adiciona um evento de entrada ao campo de descrição para capitalizar a primeira letra em tempo real
 document.getElementById('descricaoRotinaInput').addEventListener('input', function() {
@@ -241,12 +256,27 @@ function adicionarCompromisso() {
             termina: termina,
             descricao: descricao
         };
-        compromissos.push(novoCompromisso);
+
+        // Encontra o índice onde o novo compromisso deve ser inserido
+        let indiceInsercao = 0;
+        for (let i = 0; i < compromissos.length; i++) {
+            if (comeca < compromissos[i].comeca || (comeca === compromissos[i].comeca && termina < compromissos[i].termina)) {
+                indiceInsercao = i;
+                break;
+            } else {
+                indiceInsercao = i + 1;
+            }
+        }
+
+        // Insere o novo compromisso no índice calculado
+        compromissos.splice(indiceInsercao, 0, novoCompromisso);
+
         salvarCompromissos();
         atualizarListaCompromissos();
         $('#addCompromisso').modal('hide');
     }
 }
+
 
 document.getElementById('descricaoCompromissoInput').addEventListener('input', function() {
     let descricao = this.value;
