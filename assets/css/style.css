@@ -113,7 +113,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .components div .form-check .form-check-label { color: #B5B5B5; }
 
 .main .wrapper .container .components div ul { list-style: none; padding: 0; margin: 0; height: 130px; }
-.main .wrapper .container .components div ul.scroll { overflow-y: scroll; height: 150px; }
+.main .wrapper .container .components div ul.scroll { overflow-y: scroll; max-height:130px; height: 130px; }
 .main .wrapper .container .components div ul.customScroll { max-height: 210px; height:210px; overflow-y: scroll; }
 .main .wrapper .container .components div ul.customScrollRotinas { max-height: 350px; height:350px; overflow-y: scroll; }
 .main .wrapper .container .components div ul.customScrollCompromissos { max-height: 120px; height:120px; overflow-y: scroll; }
@@ -271,7 +271,8 @@ p { font-size: 16px; line-height: 25.6px; }
 
 /* FLOW */
 .main .wrapper .container .flow { margin-top: 130px; margin-bottom: 50px; }
-.main .wrapper .container .flow span { display: block; color: #fff; font-size: 16px;}
+.main .wrapper .container .flow span { display: block; color: #fff; font-size: 20px;}
+.main .wrapper .container .flow span.default { font-size: 16px; }
 .main .wrapper .container .flow .top { display: flex; gap: 30px; width: 100%; }
 .main .wrapper .container .flow .top div:nth-child(1) { width: 33%; }
 .main .wrapper .container .flow .top div:nth-child(1) .title { display: flex; gap: 20px; align-items: center; padding: 0; width: 100%; margin: 10px 0px 25px 0px; background: #121212; border-radius: 15px; padding: 25px 30px; margin-top: 30px; }
@@ -297,7 +298,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .flow .top div:nth-child(2) .boxImage.mt5 { margin-top: 45px; }
 
 .main .wrapper .container .flow .top div:nth-child(2) .boxImage img { width: 100px; margin: 0 auto; display: block; transition: all 0.3s; }
-.main .wrapper .container .flow .top div:nth-child(2) .boxImage img.imagemCustoTudo { width: 100%; height: 215px; position: relative; top: initial; margin-top: -50px; object-fit: cover; border-radius: 10px; }
+.main .wrapper .container .flow .top div:nth-child(2) .boxImage img.imagemCustoTudo { width: 100%; height: 195px; position: relative; top: initial; margin-top: -35px; object-fit: cover; }
 .main .wrapper .container .flow .top div:nth-child(2) small { color: rgba(255,255,255,0.2); display: block; text-align: center; margin-top: 10px; font-size: 14px; }
 .main .wrapper .container .flow .top div:nth-child(2) img:hover { cursor:pointer; opacity: 0.6;}
 .main .wrapper .container .flow .top div.customHeight { height: 285px; }
@@ -312,7 +313,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .flow .top div:nth-child(3) .itens .boxImage:nth-child(6) { border-right: none; }
 
 .main .wrapper .container .flow .top div:nth-child(3) .itens .boxImage img { width: 45px; margin: 0 auto; display: block; top: 35px;  position: relative; top: 0; margin-top: 20px;}
-.main .wrapper .container .flow .top div:nth-child(3) .itens .boxImage img.imagemCusto { width: 100%; height: 110px; position: relative; top: initial; margin-top: 0; object-fit: cover; }
+.main .wrapper .container .flow .top div:nth-child(3) .itens .boxImage img.imagemCusto { width: 100%; height: 98px; position: relative; top: initial; margin-top: 0; object-fit: cover; }
 .main .wrapper .container .flow .top div:nth-child(3) .itens .boxImage small { color: rgba(255,255,255,0.2); display: block; text-align: center; margin-top: 10px; font-size: 12px; }
 
 
@@ -337,7 +338,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .mid div:nth-child(1) { width: 31.7%; }
 
 .main .wrapper .container .mid div .title { display: flex; gap: 20px; align-items: center; padding: 0; width: 100%; margin: 10px 0px 25px 0px; }
-.main .wrapper .container .mid div .title span { color: #fff; }
+.main .wrapper .container .mid div .title span { color: #fff; font-size: 20px; }
 .main .wrapper .container .mid div .title small { color: rgba(255,255,255,0.4); margin-left: auto; }
 
 .main .wrapper .container .mid div ul { list-style: none; padding: 0; margin: 0; height: 130px; }
@@ -348,7 +349,7 @@ p { font-size: 16px; line-height: 25.6px; }
 .main .wrapper .container .mid div ul li small:last-child { margin-right: 20px; }
 
 .main .wrapper .container .mid div#listaTarefas { width: 100% !important; padding: 0 !important; }
-.main .wrapper .container .mid div#listaTarefas.customScroll { height: 60%; overflow-y: scroll; }
+.main .wrapper .container .mid div#listaTarefas.customScroll { max-height:210px; height: 210px; overflow-y: scroll; }
 .main .wrapper .container .mid div#listaTarefas p { color: #606060;}
 .main .wrapper .container .mid div#listaTarefas div.form-check { padding: 10px 24px; background: transparent; width: 100%; border: none; position: relative; }
 .main .wrapper .container .mid div#listaTarefas div.form-check img { cursor:pointer; position: absolute; width: 15px; right: 15px; top: 14px; opacity: 0.2; transition: all 0.3s; }
@@ -783,6 +784,7 @@ footer p { color: #fff; }
 .modal-header { border-bottom: none; }
 .modal-header .btn-close { margin-right: 5px; margin-top: -5px; }
 .modal .modal-body { position: relative; }
+.modal .modal-body.paddingCustom { padding: 10px 30px 30px 30px; }
 .modal .modal-body .hours { display: flex; align-items: center; gap: 20px; }
 .modal .modal-body.video { width: 700px !important; height: 300px; }
 .modal .modal-body label { display: block; margin-bottom: 10px; }

@@ -5,7 +5,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Objetivo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body paddingCustom">
                 <input id="descricaoObjetivoInput" type="text" class="form-control" placeholder="Descrição">
                 <button id="adicionarObjetivo" class="btn btn-primary">Adicionar</button>
             </div>
