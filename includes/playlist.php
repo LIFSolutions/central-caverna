@@ -111,23 +111,23 @@
     <div class="tab-pane fade" id="instrumental-tab-pane" role="tabpanel" aria-labelledby="instrumental-tab" tabindex="0">
         <div class="videosFlow">
             <div class="video-container" data-video-id="YQ5L_SoghQQ" data-thumbnail="../assets/images/flow/i1.jpg">
-                <img src="../assets/images/flow/i1.jpg">
+                <img src="../assets/images/flow/I1.jpg">
             </div>
 
             <div class="video-container" data-video-id="FMzkQMUe2TY" data-thumbnail="../assets/images/flow/i2.jpg">
-                <img src="../assets/images/flow/i2.jpg">
+                <img src="../assets/images/flow/I2.jpg">
             </div>
 
             <div class="video-container" data-video-id="_WOlr5uZVg8" data-thumbnail="../assets/images/flow/i3.jpg">
-                <img src="../assets/images/flow/i3.jpg">
+                <img src="../assets/images/flow/I3.jpg">
             </div>
 
             <div class="video-container" data-video-id="2vXaV3ZL1AY" data-thumbnail="../assets/images/flow/i4.jpg">
-                <img src="../assets/images/flow/i4.jpg">
+                <img src="../assets/images/flow/I4.jpg">
             </div>
 
             <div class="video-container" data-video-id="CBFUVWXGIRs" data-thumbnail="../assets/images/flow/i4.jpg">
-                <img src="../assets/images/flow/i5.jpg">
+                <img src="../assets/images/flow/I5.jpg">
             </div>
         </div>
     </div>
