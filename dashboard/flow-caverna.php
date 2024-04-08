@@ -182,75 +182,72 @@
         });
 
         window.onload = function() {
-    var listaTarefas = document.getElementById('listaTarefas');
-    var listaRotinas = document.getElementById('listaRotinas');
-    var listaCompromissos = document.getElementById('listaCompromissos');
+            var listaTarefas = document.getElementById('listaTarefas');
+            var listaRotinas = document.getElementById('listaRotinas');
+            var listaCompromissos = document.getElementById('listaCompromissos');
 
-    // Função para verificar e adicionar a classe customScroll quando a altura passar de 210px
-    function verificarAltura() {
-        if (listaTarefas.scrollHeight > 210) {
-            listaTarefas.classList.add('customScroll');
-        } else {
-            listaTarefas.classList.remove('customScroll');
-        }
+            // Função para verificar e adicionar a classe customScroll quando a altura passar de 210px
+            function verificarAltura() {
+                if (listaTarefas.scrollHeight > 210) {
+                    listaTarefas.classList.add('customScroll');
+                } else {
+                    listaTarefas.classList.remove('customScroll');
+                }
 
-        if (listaRotinas.scrollHeight > 350) {
-            listaRotinas.classList.add('customScrollRotinas');
-        } else {
-            listaRotinas.classList.remove('customScrollRotinas');
-        }
+                if (listaRotinas.scrollHeight > 350) {
+                    listaRotinas.classList.add('customScrollRotinas');
+                } else {
+                    listaRotinas.classList.remove('customScrollRotinas');
+                }
 
-        if (listaCompromissos.scrollHeight > 150) {
-            listaCompromissos.classList.add('customScrollCompromissos');
-        } else {
-            listaCompromissos.classList.remove('customScrollCompromissos');
-        }
-        
-        // Verificar se há itens na lista de compromissos e remover a classe se estiver vazia
-        if (listaCompromissos.children.length === 0) {
-            listaCompromissos.classList.remove('customScrollCompromissos');
-        }
-    }
-
-    // Observador de adição de novos elementos à lista de tarefas
-    var observer = new MutationObserver(function(mutationsList, observer) {
-        for(var mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                verificarAltura();
+                if (listaCompromissos.scrollHeight > 150) {
+                    listaCompromissos.classList.add('customScrollCompromissos');
+                } else {
+                    listaCompromissos.classList.remove('customScrollCompromissos');
+                }
+                
+                // Verificar se há itens na lista de compromissos e remover a classe se estiver vazia
+                if (listaCompromissos.children.length === 0) {
+                    listaCompromissos.classList.remove('customScrollCompromissos');
+                }
             }
-        }
-    });
 
-    observer.observe(listaTarefas, { childList: true });
+            // Observador de adição de novos elementos à lista de tarefas
+            var observer = new MutationObserver(function(mutationsList, observer) {
+                for(var mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        verificarAltura();
+                    }
+                }
+            });
 
-    // Observador de adição de novos elementos à lista de rotinas
-    var observerRotinas = new MutationObserver(function(mutationsList, observerRotinas) {
-        for(var mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                verificarAltura();
-            }
-        }
-    });
+            observer.observe(listaTarefas, { childList: true });
 
-    observerRotinas.observe(listaRotinas, { childList: true });
+            // Observador de adição de novos elementos à lista de rotinas
+            var observerRotinas = new MutationObserver(function(mutationsList, observerRotinas) {
+                for(var mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        verificarAltura();
+                    }
+                }
+            });
 
-    // Observador de adição de novos elementos à lista de compromissos
-    var observerCompromissos = new MutationObserver(function(mutationsList, observerCompromissos) {
-        for(var mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                verificarAltura();
-            }
-        }
-    });
+            observerRotinas.observe(listaRotinas, { childList: true });
 
-    observerCompromissos.observe(listaCompromissos, { childList: true });
+            // Observador de adição de novos elementos à lista de compromissos
+            var observerCompromissos = new MutationObserver(function(mutationsList, observerCompromissos) {
+                for(var mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        verificarAltura();
+                    }
+                }
+            });
 
-    // Verificar altura na inicialização
-    verificarAltura();
-};
+            observerCompromissos.observe(listaCompromissos, { childList: true });
 
-
-
+            // Verificar altura na inicialização
+            verificarAltura();
+        };
     </script>
 </body>
 </html>

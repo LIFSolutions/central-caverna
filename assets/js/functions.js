@@ -55,7 +55,7 @@ function atualizarLista() {
     } else {
         itens.forEach((item, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span contenteditable="true" id="item_${index}" oninput="editarItem(${index}, this.innerText)">${item}</span> <img src="../assets/images/icons/icRemoveWhite.svg" onclick="removerItem(${index})" style="cursor: pointer;">`;
+            li.innerHTML = `<span class="default" contenteditable="true" id="item_${index}" oninput="editarItem(${index}, this.innerText)">${item}</span> <img src="../assets/images/icons/icRemoveWhite.svg" onclick="removerItem(${index})" style="cursor: pointer;">`;
             listaItens.appendChild(li);
         });
     }
@@ -74,6 +74,12 @@ function removerItem(index) {
 }
 
 let itens = [];
+
+document.getElementById('novoItemInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarItem();
+    }
+});
 
 document.getElementById('adicionarItem').addEventListener('click', adicionarItem);
 carregarItens();
@@ -148,18 +154,39 @@ function adicionarRotina() {
     // Capitalize a primeira letra da descrição
     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
+    // Limita a descrição a 91 caracteres
+    if (descricao.length > 81) {
+        descricao = descricao.slice(0, 81);
+    }
+
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novaRotina = {
             comeca: comeca,
             termina: termina,
             descricao: descricao
         };
-        rotinas.push(novaRotina);
+
+        // Encontra o índice onde a nova rotina deve ser inserida
+        let indiceInsercao = 0;
+        for (let i = 0; i < rotinas.length; i++) {
+            if (comeca < rotinas[i].comeca || (comeca === rotinas[i].comeca && termina < rotinas[i].termina)) {
+                indiceInsercao = i;
+                break;
+            } else {
+                indiceInsercao = i + 1;
+            }
+        }
+
+        // Insere a nova rotina no índice calculado
+        rotinas.splice(indiceInsercao, 0, novaRotina);
+
         salvarRotinas();
         atualizarListaRotinas();
         $('#addRotina').modal('hide');
     }
 }
+
+
 
 // Adiciona um evento de entrada ao campo de descrição para capitalizar a primeira letra em tempo real
 document.getElementById('descricaoRotinaInput').addEventListener('input', function() {
@@ -199,6 +226,12 @@ function removerRotina(index) {
 
 let rotinas = [];
 
+document.getElementById('descricaoRotinaInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarRotina();
+    }
+});
+
 document.getElementById('adicionarRotina').addEventListener('click', adicionarRotina);
 carregarRotinas();
 
@@ -220,8 +253,13 @@ function adicionarCompromisso() {
     const termina = document.getElementById('terminaCompromissoInput').value;
     let descricao = document.getElementById('descricaoCompromissoInput').value;
 
-    // Capitalize a primeira letra da descrição
-    descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+     // Capitalize a primeira letra da descrição
+     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
+
+     // Limita a descrição a 91 caracteres
+     if (descricao.length > 81) {
+         descricao = descricao.slice(0, 81);
+     }
 
     if (comeca.trim() !== '' && termina.trim() !== '' && descricao.trim() !== '') {
         const novoCompromisso = {
@@ -229,12 +267,27 @@ function adicionarCompromisso() {
             termina: termina,
             descricao: descricao
         };
-        compromissos.push(novoCompromisso);
+
+        // Encontra o índice onde o novo compromisso deve ser inserido
+        let indiceInsercao = 0;
+        for (let i = 0; i < compromissos.length; i++) {
+            if (comeca < compromissos[i].comeca || (comeca === compromissos[i].comeca && termina < compromissos[i].termina)) {
+                indiceInsercao = i;
+                break;
+            } else {
+                indiceInsercao = i + 1;
+            }
+        }
+
+        // Insere o novo compromisso no índice calculado
+        compromissos.splice(indiceInsercao, 0, novoCompromisso);
+
         salvarCompromissos();
         atualizarListaCompromissos();
         $('#addCompromisso').modal('hide');
     }
 }
+
 
 document.getElementById('descricaoCompromissoInput').addEventListener('input', function() {
     let descricao = this.value;
@@ -272,6 +325,12 @@ function removerCompromisso(index) {
 }
 
 let compromissos = [];
+
+document.getElementById('descricaoCompromissoInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarCompromisso();
+    }
+});
 
 document.getElementById('adicionarCompromisso').addEventListener('click', adicionarCompromisso);
 carregarCompromissos();
@@ -415,7 +474,8 @@ function atualizarDescricaoObjetivo(descricaoAntiga, novaDescricao) {
     const indexObjetivo = objetivos.findIndex(objetivo => objetivo.descricao === descricaoAntiga);
     if (indexObjetivo !== -1) {
         objetivos[indexObjetivo].descricao = novaDescricao;
-        salvarObjetivos();
+        salvarObjetivos(); // Salvando as alterações no localStorage após a edição
+        atualizarListaObjetivos(); // Atualizando a lista de objetivos na interface após a edição
     }
 }
 
@@ -483,12 +543,19 @@ function atualizarListaObjetivos() {
 
 let objetivos = [];
 
+document.getElementById('descricaoObjetivoInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarObjetivo();
+    }
+});
+
 document.getElementById('adicionarObjetivo').addEventListener('click', adicionarObjetivo);
 carregarObjetivos();
 
 function salvarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
+
 
 function carregarTarefas() {
     const tarefasString = localStorage.getItem('tarefas');
@@ -502,7 +569,6 @@ function adicionarTarefa() {
     const descricaoInput = document.getElementById('descricaoTarefasInput');
     let descricao = descricaoInput.value;
 
-    // Capitalize a primeira letra da descrição
     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
     if (descricao.trim() !== '') {
@@ -510,7 +576,7 @@ function adicionarTarefa() {
         const mensagemNenhumaTarefa = listaTarefas.querySelector('p');
 
         if (mensagemNenhumaTarefa) {
-            mensagemNenhumaTarefa.remove(); // Remove a mensagem se existir
+            mensagemNenhumaTarefa.remove(); 
         }
 
         const novoCheckbox = document.createElement('input');
@@ -519,41 +585,37 @@ function adicionarTarefa() {
 
         const novaLabel = document.createElement('label');
         novaLabel.className = 'form-check-label';
-        novaLabel.setAttribute('contentEditable', true); // Permite edição de conteúdo
+        novaLabel.setAttribute('contentEditable', true); 
         novaLabel.textContent = descricao;
 
-        // Adicionando evento de input para atualizar a descrição em tempo real
         novaLabel.addEventListener('input', function() {
             const novaDescricao = this.textContent.trim();
-            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); // Encontra o índice da tarefa
+            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); 
             if (indexTarefa !== -1) {
                 tarefas[indexTarefa].descricao = novaDescricao;
-                salvarTarefas(); // Salva as alterações no localStorage
+                salvarTarefas(); 
             }
         });
 
-        // Adicionando evento de mudança de estado para o checkbox
         novoCheckbox.addEventListener('change', function() {
-            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); // Encontra o índice da tarefa
+            const indexTarefa = Array.from(this.parentNode.parentNode.children).indexOf(this.parentNode); 
             if (indexTarefa !== -1) {
-                tarefas[indexTarefa].concluida = this.checked; // Atualiza o estado concluído da tarefa
-                salvarTarefas(); // Salva as alterações no localStorage
+                tarefas[indexTarefa].concluida = this.checked; 
+                salvarTarefas(); 
             }
         });
 
         const spanRemove = document.createElement('span');
         spanRemove.className = 'remove';
         const iconeRemover = document.createElement('img');
-        iconeRemover.src = '../assets/images/icons/icRemoveWhite.svg'; // Aqui você coloca o caminho relativo da sua imagem de remover
+        iconeRemover.src = '../assets/images/icons/icRemoveWhite.svg';
         iconeRemover.alt = 'Remover';
         spanRemove.appendChild(iconeRemover);
 
-        // Adicionando evento de clique ao ícone de remoção
         spanRemove.addEventListener('click', function() {
-            // Obtém a descrição da tarefa a partir do elemento pai
             const descricaoTarefa = this.parentNode.querySelector('.form-check-label').textContent;
-            this.parentNode.remove(); // Remove o item quando o span é clicado
-            removerTarefa(descricaoTarefa); // Chama a função para remover a tarefa correta
+            this.parentNode.remove(); 
+            removerTarefa(descricaoTarefa); 
         });
 
         const divFormCheck = document.createElement('div');
@@ -564,15 +626,14 @@ function adicionarTarefa() {
 
         listaTarefas.appendChild(divFormCheck);
 
-        // Salvando a nova tarefa no localStorage
         const novaTarefa = {
             descricao: descricao,
-            concluida: false // Definindo como não concluída por padrão
+            concluida: false 
         };
         tarefas.push(novaTarefa);
         salvarTarefas();
 
-        descricaoInput.value = ''; // Limpa o campo de entrada de descrição
+        descricaoInput.value = '';
         $('#addTarefaFlow').modal('hide');
     }
 }
@@ -580,22 +641,16 @@ function adicionarTarefa() {
 document.getElementById('descricaoTarefasInput').addEventListener('input', function() {
     let descricao = this.value;
 
-    // Capitalize a primeira letra da descrição
     descricao = descricao.charAt(0).toUpperCase() + descricao.slice(1);
 
-    // Atualiza o valor do campo de descrição com a primeira letra maiúscula
     this.value = descricao;
 });
-
-
-
-
 
 function atualizarDescricaoTarefa(descricaoAntiga, novaDescricao) {
     const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricaoAntiga);
     if (indexTarefa !== -1) {
         tarefas[indexTarefa].descricao = novaDescricao;
-        salvarTarefas(); // Salva as alterações no localStorage
+        salvarTarefas(); 
     }
 }
 
@@ -603,15 +658,15 @@ function atualizarDescricaoTarefa(descricaoAntiga, novaDescricao) {
 function removerTarefa(descricao) {
     const indexTarefa = tarefas.findIndex(tarefa => tarefa.descricao === descricao);
     if (indexTarefa !== -1) {
-        tarefas.splice(indexTarefa, 1); // Removendo apenas a tarefa encontrada
+        tarefas.splice(indexTarefa, 1);
         salvarTarefas();
 
         const listaTarefas = document.getElementById('listaTarefas');
         if (tarefas.length === 0) {
             const mensagemNenhumaTarefa = document.createElement('p');
             mensagemNenhumaTarefa.textContent = 'Nenhuma tarefa adicionada ainda.';
-            listaTarefas.innerHTML = ''; // Limpa a lista de tarefas
-            listaTarefas.appendChild(mensagemNenhumaTarefa); // Adiciona a mensagem
+            listaTarefas.innerHTML = ''; 
+            listaTarefas.appendChild(mensagemNenhumaTarefa); 
         }
     }
 }
@@ -624,7 +679,7 @@ function carregarTarefas() {
     const tarefasString = localStorage.getItem('tarefas');
     if (tarefasString) {
         tarefas = JSON.parse(tarefasString);
-        atualizarListaTarefas(); // Atualizar a interface após carregar as tarefas
+        atualizarListaTarefas(); 
     }
 }
 
@@ -634,10 +689,10 @@ function atualizarListaTarefas() {
     mensagemNenhumaTarefa.textContent = 'Nenhuma tarefa adicionada ainda.';
     
     if (tarefas.length === 0) {
-        listaTarefas.innerHTML = ''; // Limpa a lista de tarefas
-        listaTarefas.appendChild(mensagemNenhumaTarefa); // Adiciona a mensagem
+        listaTarefas.innerHTML = ''; 
+        listaTarefas.appendChild(mensagemNenhumaTarefa); 
     } else {
-        listaTarefas.innerHTML = ''; // Limpa a lista de tarefas
+        listaTarefas.innerHTML = '';
         tarefas.forEach(tarefa => {
             const novoCheckbox = document.createElement('input');
             novoCheckbox.type = 'checkbox';
@@ -646,17 +701,17 @@ function atualizarListaTarefas() {
 
             const novaLabel = document.createElement('label');
             novaLabel.className = 'form-check-label';
-            novaLabel.setAttribute('contentEditable', true); // Permite edição de conteúdo
+            novaLabel.setAttribute('contentEditable', true); 
             novaLabel.textContent = tarefa.descricao;
 
             const spanRemove = document.createElement('span');
             spanRemove.className = 'remove';
             const iconeRemover = document.createElement('img');
-            iconeRemover.src = '../assets/images/icons/icRemoveWhite.svg'; // Aqui você coloca o caminho relativo da sua imagem de remover
+            iconeRemover.src = '../assets/images/icons/icRemoveWhite.svg'; 
             iconeRemover.alt = 'Remover';
             spanRemove.appendChild(iconeRemover);
             spanRemove.addEventListener('click', function() {
-                this.parentNode.remove(); // Remove o item quando o span é clicado
+                this.parentNode.remove(); 
                 removerTarefa(tarefa.descricao);
             });
 
@@ -668,7 +723,6 @@ function atualizarListaTarefas() {
 
             listaTarefas.appendChild(divFormCheck);
 
-            // Adicionando evento para marcar como concluída
             novoCheckbox.addEventListener('change', function() {
                 tarefa.concluida = this.checked;
                 salvarTarefas();
@@ -677,6 +731,12 @@ function atualizarListaTarefas() {
     }
 }
 let tarefas = [];
+
+document.getElementById('descricaoTarefasInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        adicionarTarefa();
+    }
+});
 
 document.getElementById('adicionarTarefa').addEventListener('click', adicionarTarefa);
 carregarTarefas();

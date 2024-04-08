@@ -31,7 +31,7 @@ $(document).ready(function() {
         $('#flowStatus').text('Ativo');
     } else {
         $('#switch-flat').prop('checked', false);
-        $('.removeMessage').html('<p>O Flow Caverna está desativado.</p>').removeClass('activated');
+        $('.removeMessage').html('<p>Faça o Ritual de ativação do Flow Caverna para a liberação das funcionalidades</p>').removeClass('activated');
         $('.hidden').removeClass('hidden').addClass('filter');
         $('#flowStatus').text('Desativado');
     }
@@ -136,30 +136,27 @@ $(document).ready(function() {
         iniciarIntervalo(tipoIntervalo);
     }
 
+    setInterval(function() {
+        var tempoRestante = document.getElementById("timer").textContent;
+        localStorage.setItem('tempoRestante', tempoRestante); // Atualizar tempo do contador no localStorage
+    }, 1000);
+    
     // Evento ao clicar em "Iniciar"
     $('#playButton').click(function() {
         var tempoRestante = document.getElementById("timer").textContent;
+        localStorage.setItem('tempoRestante', tempoRestante); // Salvar tempo do contador no localStorage
         iniciarContador(tempoRestante);
         $(this).prop('disabled', true); // Desabilitar o botão de iniciar
     });
 
 
     // Evento ao clicar em "Resetar"
-    $('#resetButton').click(function() {
-        // Exibir a modal
-        $('#resetModal').modal('show');
-    });
+    $('#resetButton').click(function() {});
     
     // Ao clicar no botão SIM
     $('#confirmYes').click(function() {
         // Habilitar o botão de iniciar
         $('#playButton').prop('disabled', false);
-        // Fechar a modal
-        $('#resetModal').modal('hide');
-    });
-    
-    // Ao clicar no botão NÃO ou no botão fechar
-    $('.modal-footer button[data-bs-dismiss="modal"]').click(function() {
         // Fechar a modal
         $('#resetModal').modal('hide');
     });
@@ -269,53 +266,6 @@ function configurarTempo(tempoEmMinutos) {
     var minutos = Math.floor(tempoEmMinutos / 60);
     var segundosRestantes = tempoEmMinutos % 60;
     timerElement.textContent = minutos.toString().padStart(2, "0") + ":" + segundosRestantes.toString().padStart(2, "0");
-}
-
-const linksMenu = document.querySelector('.links');
-const arrowIcon = document.querySelector('.arrow');
-const dropdown = document.querySelector('.dropdownItens');
-
-// Função para fechar o menu e remover a classe 'active' do ícone de seta
-function fecharMenu() {
-    dropdown.style.display = 'none';
-    arrowIcon.classList.remove('active');
-}
-
-// Adiciona um event listener para cliques no menu
-linksMenu.addEventListener('click', function(event) {
-    // Previne que o clique se propague para o documento, evitando que o evento de fechamento seja disparado imediatamente
-    event.stopPropagation();
-
-    // Verifica se o dropdown está visível
-    if (dropdown.style.display === 'none') {
-        dropdown.style.display = 'block';
-        arrowIcon.classList.add('active');
-    } else {
-        fecharMenu();
-    }
-});
-
-// Adiciona um event listener para cliques no documento inteiro
-document.addEventListener('click', function(event) {
-    const targetElement = event.target;
-
-    // Verifica se o clique foi fora do menu
-    if (!targetElement.closest('.links')) {
-        fecharMenu();
-    }
-});
-
-function toggleVideo(image) {
-    var iframe = image.nextElementSibling;
-    if (iframe.style.display === "none") {
-        iframe.style.display = "block";
-        image.style.display = "none";
-        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    } else {
-        iframe.style.display = "none";
-        image.style.display = "block";
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    }
 }
 
 // INICIAR POMODORO:
@@ -451,3 +401,112 @@ const chartImage = document.querySelector('.chart');
 
     // Mostrar o iframe do configPomodoro quando o checkbox correspondente for marcado
     mostrarIframe("check9", "configPomodoroCheck", 0);
+
+    document.getElementById("check6").addEventListener("change", function() {
+        // Verifica se o checkbox está marcado
+        if (this.checked) {
+            // Fecha todos os iframes abertos
+            ocultarTodosIframes();
+        }
+    });
+
+    function fecharIframeAtual() {
+        var iframes = document.querySelectorAll(".iframe");
+        iframes.forEach(function(iframe) {
+            iframe.style.display = "none";
+            var player = new YT.Player(iframe.querySelector("iframe").id);
+            player.stopVideo(); // Parar o vídeo
+        });
+    }
+    
+    // Adicionar evento de escuta para cada checkbox de vídeo
+    document.getElementById("check7").addEventListener("change", function() {
+        // Verifica se o checkbox foi marcado
+        if (this.checked) {
+            // Fecha o iframe atual antes de iniciar o novo
+            fecharIframeAtual();
+            // Exibe o iframe do vídeo mindufless
+            document.getElementById("mindufless").style.display = "block";
+            var player = new YT.Player("mindufless");
+            player.playVideo(); // Inicia o vídeo
+        } else {
+            // Se o checkbox for desmarcado, fecha o iframe atual
+            fecharIframeAtual();
+        }
+    });
+    
+    document.getElementById("check8").addEventListener("change", function() {
+        // Verifica se o checkbox foi marcado
+        if (this.checked) {
+            // Fecha o iframe atual antes de iniciar o novo
+            fecharIframeAtual();
+            // Exibe o iframe do vídeo rito
+            document.getElementById("rito").style.display = "block";
+            var player = new YT.Player("rito");
+            player.playVideo(); // Inicia o vídeo
+        } else {
+            // Se o checkbox for desmarcado, fecha o iframe atual
+            fecharIframeAtual();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Função para fechar a modal
+    function fecharModal() {
+        document.getElementById('configPomodoroCheck').style.display = 'none';
+        document.getElementById('confirmPomodoroCheck').style.display = 'none';
+    }
+
+    // Adiciona um evento de clique ao botão confirmPomodoro
+    document.querySelector('.confirmPomodoro').addEventListener('click', fecharModal);
+
+    // Adiciona um evento de clique ao botão confirmPomodoroBtn
+    document.querySelector('.confirmPomodoroBtn').addEventListener('click', fecharModal);
+    });
+
+    const linksMenu = document.querySelector('.links');
+const arrowIcon = document.querySelector('.arrow');
+const dropdown = document.querySelector('.dropdownItens');
+
+// Função para fechar o menu e remover a classe 'active' do ícone de seta
+function fecharMenu() {
+    dropdown.style.display = 'none';
+    arrowIcon.classList.remove('active');
+}
+
+// Adiciona um event listener para cliques no menu
+linksMenu.addEventListener('click', function(event) {
+    // Previne que o clique se propague para o documento, evitando que o evento de fechamento seja disparado imediatamente
+    event.stopPropagation();
+
+    // Verifica se o dropdown está visível
+    if (dropdown.style.display === 'none') {
+        dropdown.style.display = 'block';
+        arrowIcon.classList.add('active');
+    } else {
+        fecharMenu();
+    }
+});
+
+// Adiciona um event listener para cliques no documento inteiro
+document.addEventListener('click', function(event) {
+    const targetElement = event.target;
+
+    // Verifica se o clique foi fora do menu
+    if (!targetElement.closest('.links')) {
+        fecharMenu();
+    }
+});
+
+function toggleVideo(image) {
+    var iframe = image.nextElementSibling;
+    if (iframe.style.display === "none") {
+        iframe.style.display = "block";
+        image.style.display = "none";
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    } else {
+        iframe.style.display = "none";
+        image.style.display = "block";
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+}

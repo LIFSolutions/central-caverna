@@ -29,7 +29,7 @@
 
                         <div>
                             <small>Longo</small>
-                            <input type="text" class="form-control" id="intervaloLongoInput" data-key="intervalo-longo" value="5">
+                            <input type="text" class="form-control" id="intervaloLongoInput" data-key="intervalo-longo" value="15">
                         </div>
                     </div>
                     <button id="btnSaveConfig">Salvar configurações</button>

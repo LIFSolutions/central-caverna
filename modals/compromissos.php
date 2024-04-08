@@ -5,12 +5,12 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Compromisso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body paddingCustom">
                 <div class="hours mb-4">
                     <input id="comecaCompromissoInput" type="text" class="form-control time" placeholder="Começa">
                     <input id="terminaCompromissoInput" type="text" class="form-control time" placeholder="Termina">
                 </div>
-                <input id="descricaoCompromissoInput" type="text" class="form-control" placeholder="Descrição">
+                <input id="descricaoCompromissoInput" type="text" class="form-control" placeholder="Descrição" maxlength="81">
                 <button id="adicionarCompromisso" class="btn btn-primary">Adicionar</button>
             </div>
         </div>

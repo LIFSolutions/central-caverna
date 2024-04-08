@@ -31,7 +31,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="check5" data-src>
-                        <label class="form-check-label" for="check5">Verificar Agenda do Dia <small>Compromissos/Objetivo/Tarefas</small></label>
+                        <label class="form-check-label" for="check5">Verificar Agenda do Dia <small>Compromissos/Objetivos</small></label>
                     </div>
 
                     <div class="form-check">
@@ -51,36 +51,30 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="check9" data-src>
-                        <label class="form-check-label" for="check9">Configurar Pomodoro <small>Lorem ipsum</small></label>
+                        <label class="form-check-label" for="check9">Configurar Metas do Pomodoro</label>
                     </div>
 
                     <button class="iniciarFlow" id="iniciarFlowBtn" disabled>Ativar Flow Caverna</button>
                 </div>
                 <div class="iframe" id="mural" style="display:none;">
                     <div class="muralImages">
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/1.png">
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/2.png">
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/3.png">
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/4.png">
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/5.jpg">
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
-                            <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
+                        <div class="boxImage">
+                            <img src="../assets/images/mural/6.jpg">
                         </div>
                     </div>
                 </div>
@@ -101,16 +95,23 @@
                 </div>
 
                 <div class="iframe" id="mindufless" style="display:none;">
-                    <iframe src="https://www.youtube.com/embed/8EeBDuQCV0A?si=NpHGiaiKf2Jgnbip" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="video-container" data-video-id="8EeBDuQCV0A" data-thumbnail="../assets/images/flow/i4.jpg">
+                        <img src="../assets/images/defaultThumb.png">
+                    </div>
                 </div>
 
                 <div class="iframe" id="rito" style="display:none;">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/Nunkt35xBPM?controls=0&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-container" data-video-id="Nunkt35xBPM" data-thumbnail="../assets/images/defaultThumb.png">
+                        <img src="../assets/images/defaultThumb.png">
+                    </div>
                 </div>
 
                 <div class="iframe" id="configPomodoroCheck" style="display:none;">
-                    <p>Configuração de Metas Pomodoro</p>
-                    <small>Mensagem que ele pode alterar depois...</small>
+                    <div class="close confirmPomodoro">
+                        <img src="../assets/images/icons/icCloseBtn.svg">
+                    </div>
+                    <p>Informe suas metas diárias abaixo</p>
+                    <small>(Opcional) Você pode alterar depois</small>
                     <label>Sessões Pomodoro</label>
                     <input type="text" class="form-control">
 
@@ -119,7 +120,7 @@
 
                     <label>Flow Estudos</label>
                     <input type="text" class="form-control">
-                    <button>Salvar</button>
+                    <button class="confirmPomodoroBtn">Salvar</button>
                 </div>
             </div>
         </div>
