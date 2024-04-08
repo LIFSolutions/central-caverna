@@ -58,29 +58,23 @@
                 </div>
                 <div class="iframe" id="mural" style="display:none;">
                     <div class="muralImages">
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
-                        <div class="boxImage" onclick="uploadMuralVisualizacao(this)">
+                        <div class="boxImage">
                             <img src="../assets/images/icons/icImage.svg">
-                            <small>Adicionar</small>
                         </div>
                     </div>
                 </div>

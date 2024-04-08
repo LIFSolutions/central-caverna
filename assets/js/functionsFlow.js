@@ -136,9 +136,15 @@ $(document).ready(function() {
         iniciarIntervalo(tipoIntervalo);
     }
 
+    setInterval(function() {
+        var tempoRestante = document.getElementById("timer").textContent;
+        localStorage.setItem('tempoRestante', tempoRestante); // Atualizar tempo do contador no localStorage
+    }, 1000);
+    
     // Evento ao clicar em "Iniciar"
     $('#playButton').click(function() {
         var tempoRestante = document.getElementById("timer").textContent;
+        localStorage.setItem('tempoRestante', tempoRestante); // Salvar tempo do contador no localStorage
         iniciarContador(tempoRestante);
         $(this).prop('disabled', true); // Desabilitar o botão de iniciar
     });
@@ -269,53 +275,6 @@ function configurarTempo(tempoEmMinutos) {
     var minutos = Math.floor(tempoEmMinutos / 60);
     var segundosRestantes = tempoEmMinutos % 60;
     timerElement.textContent = minutos.toString().padStart(2, "0") + ":" + segundosRestantes.toString().padStart(2, "0");
-}
-
-const linksMenu = document.querySelector('.links');
-const arrowIcon = document.querySelector('.arrow');
-const dropdown = document.querySelector('.dropdownItens');
-
-// Função para fechar o menu e remover a classe 'active' do ícone de seta
-function fecharMenu() {
-    dropdown.style.display = 'none';
-    arrowIcon.classList.remove('active');
-}
-
-// Adiciona um event listener para cliques no menu
-linksMenu.addEventListener('click', function(event) {
-    // Previne que o clique se propague para o documento, evitando que o evento de fechamento seja disparado imediatamente
-    event.stopPropagation();
-
-    // Verifica se o dropdown está visível
-    if (dropdown.style.display === 'none') {
-        dropdown.style.display = 'block';
-        arrowIcon.classList.add('active');
-    } else {
-        fecharMenu();
-    }
-});
-
-// Adiciona um event listener para cliques no documento inteiro
-document.addEventListener('click', function(event) {
-    const targetElement = event.target;
-
-    // Verifica se o clique foi fora do menu
-    if (!targetElement.closest('.links')) {
-        fecharMenu();
-    }
-});
-
-function toggleVideo(image) {
-    var iframe = image.nextElementSibling;
-    if (iframe.style.display === "none") {
-        iframe.style.display = "block";
-        image.style.display = "none";
-        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    } else {
-        iframe.style.display = "none";
-        image.style.display = "block";
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    }
 }
 
 // INICIAR POMODORO:
@@ -507,3 +466,50 @@ const chartImage = document.querySelector('.chart');
             document.getElementById('configPomodoroCheck').style.display = 'none';
         });
     });
+
+    const linksMenu = document.querySelector('.links');
+const arrowIcon = document.querySelector('.arrow');
+const dropdown = document.querySelector('.dropdownItens');
+
+// Função para fechar o menu e remover a classe 'active' do ícone de seta
+function fecharMenu() {
+    dropdown.style.display = 'none';
+    arrowIcon.classList.remove('active');
+}
+
+// Adiciona um event listener para cliques no menu
+linksMenu.addEventListener('click', function(event) {
+    // Previne que o clique se propague para o documento, evitando que o evento de fechamento seja disparado imediatamente
+    event.stopPropagation();
+
+    // Verifica se o dropdown está visível
+    if (dropdown.style.display === 'none') {
+        dropdown.style.display = 'block';
+        arrowIcon.classList.add('active');
+    } else {
+        fecharMenu();
+    }
+});
+
+// Adiciona um event listener para cliques no documento inteiro
+document.addEventListener('click', function(event) {
+    const targetElement = event.target;
+
+    // Verifica se o clique foi fora do menu
+    if (!targetElement.closest('.links')) {
+        fecharMenu();
+    }
+});
+
+function toggleVideo(image) {
+    var iframe = image.nextElementSibling;
+    if (iframe.style.display === "none") {
+        iframe.style.display = "block";
+        image.style.display = "none";
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    } else {
+        iframe.style.display = "none";
+        image.style.display = "block";
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+}
