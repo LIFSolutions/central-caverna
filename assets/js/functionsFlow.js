@@ -151,21 +151,12 @@ $(document).ready(function() {
 
 
     // Evento ao clicar em "Resetar"
-    $('#resetButton').click(function() {
-        // Exibir a modal
-        $('#resetModal').modal('show');
-    });
+    $('#resetButton').click(function() {});
     
     // Ao clicar no botão SIM
     $('#confirmYes').click(function() {
         // Habilitar o botão de iniciar
         $('#playButton').prop('disabled', false);
-        // Fechar a modal
-        $('#resetModal').modal('hide');
-    });
-    
-    // Ao clicar no botão NÃO ou no botão fechar
-    $('.modal-footer button[data-bs-dismiss="modal"]').click(function() {
         // Fechar a modal
         $('#resetModal').modal('hide');
     });
