@@ -460,11 +460,17 @@ const chartImage = document.querySelector('.chart');
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Adiciona um evento de clique ao botão confirmPomodoro
-        document.querySelector('.confirmPomodoro').addEventListener('click', function() {
-            // Fecha o iframe configPomodoroCheck
-            document.getElementById('configPomodoroCheck').style.display = 'none';
-        });
+        // Função para fechar a modal
+    function fecharModal() {
+        document.getElementById('configPomodoroCheck').style.display = 'none';
+        document.getElementById('confirmPomodoroCheck').style.display = 'none';
+    }
+
+    // Adiciona um evento de clique ao botão confirmPomodoro
+    document.querySelector('.confirmPomodoro').addEventListener('click', fecharModal);
+
+    // Adiciona um evento de clique ao botão confirmPomodoroBtn
+    document.querySelector('.confirmPomodoroBtn').addEventListener('click', fecharModal);
     });
 
     const linksMenu = document.querySelector('.links');

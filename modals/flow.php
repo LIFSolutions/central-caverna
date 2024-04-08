@@ -59,22 +59,22 @@
                 <div class="iframe" id="mural" style="display:none;">
                     <div class="muralImages">
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/1.png">
                         </div>
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/2.png">
                         </div>
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/3.png">
                         </div>
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/4.png">
                         </div>
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/5.jpg">
                         </div>
                         <div class="boxImage">
-                            <img src="../assets/images/icons/icImage.svg">
+                            <img src="../assets/images/mural/6.jpg">
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
 
                     <label>Flow Estudos</label>
                     <input type="text" class="form-control">
-                    <button class="confirmPomodoro">Salvar</button>
+                    <button class="confirmPomodoroBtn">Salvar</button>
                 </div>
             </div>
         </div>
