@@ -51,7 +51,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="check9" data-src>
-                        <label class="form-check-label" for="check9">Configurar Pomodoro <small>Lorem ipsum</small></label>
+                        <label class="form-check-label" for="check9">Configurar Metas do Pomodoro <small>Opcional você pode alterar depois</small></label>
                     </div>
 
                     <button class="iniciarFlow" id="iniciarFlowBtn" disabled>Ativar Flow Caverna</button>
@@ -109,8 +109,8 @@
                 </div>
 
                 <div class="iframe" id="configPomodoroCheck" style="display:none;">
-                    <p>Configuração de Metas Pomodoro</p>
-                    <small>Mensagem que ele pode alterar depois...</small>
+                    <p>Informe suas metas diárias abaixo</p>
+                    <small>"Opcional" você pode alterar depois</small>
                     <label>Sessões Pomodoro</label>
                     <input type="text" class="form-control">
 
